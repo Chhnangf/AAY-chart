@@ -15,32 +15,20 @@ import com.aay.compose.baseComponents.model.LegendPosition
 import com.aay.compose.lineChart.LineChart
 import com.aay.compose.lineChart.model.LineParameters
 import com.aay.compose.lineChart.model.LineType
+import kotlin.math.PI
+import kotlin.math.sin
 
 @Composable
 fun LineChartSample() {
-
+    val items = (8800..8830).map { (sin((2 * PI * it) / 28) * 100).toInt() }
     val testLineParameters: List<LineParameters> = listOf(
         LineParameters(
             label = "revenue",
-            data = listOf(7000000.0, 00.0, 50000000.33, 40000000.0, 100000000.500, 50000000.0),
+            data = items.map { it.toDouble() },
             lineColor = Color.Gray,
             lineType = LineType.CURVED_LINE,
             lineShadow = true,
         ),
-        LineParameters(
-            label = "Earnings",
-            data = listOf(60000000.0, 80000000.6, 40000000.33, 86000000.232, 88000000.0, 90000000.0),
-            lineColor = Color(0xFFFF7F50),
-            lineType = LineType.DEFAULT_LINE,
-            lineShadow = true
-        ),
-        LineParameters(
-            label = "Earnings",
-            data = listOf(1000000.0, 40000000.0, 11000000.33, 55000000.23, 1000000.0, 100000000.0),
-            lineColor = Color(0xFF81BE88),
-            lineType = LineType.CURVED_LINE,
-            lineShadow = false,
-        )
     )
 
     Box(Modifier.padding(top = 16.dp, start = 16.dp, bottom = 16.dp)) {
@@ -49,7 +37,7 @@ fun LineChartSample() {
             linesParameters = testLineParameters,
             isGrid = true,
             gridColor = Color.Gray,
-            xAxisData = listOf("2015", "2016", "2017", "2018", "2019", "2020"),
+            xAxisData = items.mapIndexed { index, d -> index.toString() },
             animateChart = true,
             showGridWithSpacer = false,
             yAxisStyle = TextStyle(
@@ -61,7 +49,7 @@ fun LineChartSample() {
                 color = Color.Gray,
                 fontWeight = FontWeight.W400
             ),
-            yAxisRange = 14,
+            yAxisRange = items.size,
             oneLineChart = false,
             gridOrientation = GridOrientation.GRID,
             legendPosition = LegendPosition.TOP

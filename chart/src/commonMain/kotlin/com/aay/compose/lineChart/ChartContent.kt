@@ -20,6 +20,7 @@ import kotlinx.coroutines.delay
 import com.aay.compose.baseComponents.baseChartContainer
 import com.aay.compose.baseComponents.model.GridOrientation
 import com.aay.compose.lineChart.components.drawDefaultLineWithShadow
+import com.aay.compose.lineChart.components.drawLineAsCatmullRom
 import com.aay.compose.lineChart.model.LineParameters
 import com.aay.compose.lineChart.model.LineType
 import com.aay.compose.utils.checkIfDataValid
@@ -104,7 +105,19 @@ internal fun ChartContent(
                 throw Exception("Special case must contain just one line")
             }
             linesParameters.forEach { line ->
-                drawQuarticLineWithShadow(
+//                drawQuarticLineWithShadow(
+//                    line = line,
+//                    lowerValue = lowerValue.toFloat(),
+//                    upperValue = upperValue.toFloat(),
+//                    animatedProgress = animatedProgress,
+//                    spacingX = spacingX,
+//                    spacingY = spacingY,
+//                    specialChart = specialChart,
+//                    clickedPoints = clickedPoints,
+//                    xRegionWidth = xRegionWidth,
+//                    textMeasure
+//                )
+                drawLineAsCatmullRom(
                     line = line,
                     lowerValue = lowerValue.toFloat(),
                     upperValue = upperValue.toFloat(),
@@ -114,9 +127,8 @@ internal fun ChartContent(
                     specialChart = specialChart,
                     clickedPoints = clickedPoints,
                     xRegionWidth = xRegionWidth,
-                    textMeasure
+                    textMeasurer = textMeasure
                 )
-
             }
         } else {
             if (linesParameters.size >= 2) {
@@ -138,7 +150,19 @@ internal fun ChartContent(
                     )
 
                 } else {
-                    drawQuarticLineWithShadow(
+//                    drawQuarticLineWithShadow(
+//                        line = line,
+//                        lowerValue = lowerValue.toFloat(),
+//                        upperValue = upperValue.toFloat(),
+//                        animatedProgress = animatedProgress,
+//                        spacingX = spacingX,
+//                        spacingY = spacingY,
+//                        specialChart = specialChart,
+//                        clickedPoints = clickedPoints,
+//                        xRegionWidth = xRegionWidth,
+//                        textMeasure
+//                    )
+                    drawLineAsCatmullRom(
                         line = line,
                         lowerValue = lowerValue.toFloat(),
                         upperValue = upperValue.toFloat(),
@@ -148,7 +172,7 @@ internal fun ChartContent(
                         specialChart = specialChart,
                         clickedPoints = clickedPoints,
                         xRegionWidth = xRegionWidth,
-                        textMeasure
+                        textMeasurer = textMeasure
                     )
 
                 }

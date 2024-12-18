@@ -31,7 +31,7 @@ internal fun checkIfDataValid(
 internal fun checkIfDataIsNegative(data: List<Double>) {
     data.forEach {
         if (it < 0.0) {
-            throw Exception("The data can't contains negative values.")
+            //throw Exception("The data can't contains negative values.")
         }
     }
 }

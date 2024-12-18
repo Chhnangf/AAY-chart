@@ -70,3 +70,4 @@ internal fun <T> DrawScope.baseChartContainer(
         xRegionWidth = xRegionWidth,
     )
 }
+
